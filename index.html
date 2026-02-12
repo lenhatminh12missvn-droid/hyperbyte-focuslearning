@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div class="app">
+
+
+<header class="top-bar">
+    <img src="logo.png" class="logo">
+    <h1>Learning Mode</h1>
+</header>
+
+<!-- Pomodoro -->
+<div class="card">
+<h2>Pomodoro Timer</h2>
+
+<div class="time" id="time">25:00</div>
+
+<div class="progress-bar">
+  <div class="progress" id="progress"></div>
+</div>
+
+<p>Pomodoro Completed: <span id="sessions">0</span></p>
+
+<button id="startBtn">Start</button>
+<button id="resetBtn">Reset</button>
+
+</div>
+
+<!-- Exam Countdown -->
+<div class="card">
+
+<h2>Exam Countdown</h2>
+
+<div class="exam-grid">
+  <div class="box"><div id="d">0</div>Days</div>
+  <div class="box"><div id="h">0</div>Hours</div>
+  <div class="box"><div id="m">0</div>Minutes</div>
+  <div class="box"><div id="s">0</div>Seconds</div>
+</div>
+
+<br>
+
+<input type="date" id="examInput">
+<button id="saveExam">Save Exam Date</button>
+
+<div class="percent">
+Progress to exam: <span id="percent">0</span>%
+</div>
+
+</div>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
