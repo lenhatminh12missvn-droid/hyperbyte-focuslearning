@@ -8,6 +8,9 @@ body {
     margin: 0;
     font-family: Arial, sans-serif;
 
+    display: flex;
+    flex-direction: column;
+
     background:
         radial-gradient(circle at top, #1fd1f9 0%, #081018 40%, #05070d 80%);
         
@@ -117,4 +120,5 @@ button:hover{
   align-items: center;       /* căn giữa dọc */
   gap: 40px;
 }
+
 
