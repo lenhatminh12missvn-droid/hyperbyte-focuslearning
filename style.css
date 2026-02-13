@@ -110,6 +110,11 @@ button:hover{
     object-fit:contain;
 
 }
-.container {
-    backdrop-filter: blur(8px);
+.container{
+  min-height: calc(100vh - 80px);
+  display: flex;
+  justify-content: center;   /* căn giữa ngang */
+  align-items: center;       /* căn giữa dọc */
+  gap: 40px;
 }
+
