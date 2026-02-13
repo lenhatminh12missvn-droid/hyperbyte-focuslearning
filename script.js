@@ -1,102 +1,78 @@
-/* --------------------
-   POMODORO
--------------------- */
+// Pomodoro
+let time = 25 * 60;
+let timerInterval;
+let completed = 0;
 
-let workTime = 25 * 60;
-let timeLeft = workTime;
-let timer = null;
-
-const timeEl = document.getElementById("time");
+const timerEl = document.getElementById("timer");
 const progressEl = document.getElementById("progress");
-const sessionsEl = document.getElementById("sessions");
+const countEl = document.getElementById("count");
 
-let sessions = localStorage.getItem("sessions") || 0;
-sessionsEl.textContent = sessions;
+document.getElementById("startBtn").onclick = () => {
+  if(timerInterval) return;
 
-function updateTime(){
-  let min = Math.floor(timeLeft / 60);
-  let sec = timeLeft % 60;
-  timeEl.textContent =
-    `${min}:${sec < 10 ? "0"+sec : sec}`;
-
-  let percent = ((workTime - timeLeft)/workTime)*100;
-  progressEl.style.width = percent + "%";
-}
-
-document.getElementById("startBtn").onclick = () =>{
-  if(timer) return;
-
-  timer = setInterval(()=>{
-    if(timeLeft > 0){
-      timeLeft--;
-      updateTime();
-    }else{
-      clearInterval(timer);
-      timer=null;
-      sessions++;
-      localStorage.setItem("sessions",sessions);
-      sessionsEl.textContent=sessions;
-      timeLeft = workTime;
-      updateTime();
-      alert("Pomodoro Completed!");
+  timerInterval = setInterval(() => {
+    if(time <= 0){
+      clearInterval(timerInterval);
+      timerInterval = null;
+      completed++;
+      countEl.innerText = completed;
+      time = 25 * 60;
+      return;
     }
+    time--;
+    updateTimer();
   },1000);
+};
+
+document.getElementById("resetBtn").onclick = () => {
+  clearInterval(timerInterval);
+  timerInterval = null;
+  time = 25 * 60;
+  updateTimer();
+};
+
+function updateTimer(){
+  let m = Math.floor(time/60);
+  let s = time%60;
+  timerEl.innerText = 
+    `${m.toString().padStart(2,"0")}:${s.toString().padStart(2,"0")}`;
+  
+  progressEl.style.width = 
+    ((1 - time/(25*60))*100) + "%";
 }
 
-document.getElementById("resetBtn").onclick = ()=>{
-  clearInterval(timer);
-  timer=null;
-  timeLeft = workTime;
-  updateTime();
-}
+updateTimer();
 
-/* --------------------
-   EXAM COUNTDOWN
--------------------- */
+// Exam Countdown
+const examDateInput = document.getElementById("examDate");
+const daysEl = document.getElementById("days");
+const hoursEl = document.getElementById("hours");
+const minutesEl = document.getElementById("minutes");
+const secondsEl = document.getElementById("seconds");
+const progressText = document.getElementById("examProgress");
 
-const dEl=document.getElementById("d");
-const hEl=document.getElementById("h");
-const mEl=document.getElementById("m");
-const sEl=document.getElementById("s");
-const percentEl=document.getElementById("percent");
-const examInput=document.getElementById("examInput");
+let examDate = null;
 
-let examDate = localStorage.getItem("examDate");
+document.getElementById("saveDate").onclick = () => {
+  examDate = new Date(examDateInput.value);
+};
 
-if(examDate){
-  examInput.value = examDate;
-}
-
-document.getElementById("saveExam").onclick=()=>{
-  examDate = examInput.value;
-  localStorage.setItem("examDate",examDate);
-}
-
-function updateExam(){
+setInterval(() => {
   if(!examDate) return;
 
-  const now = new Date().getTime();
-  const exam = new Date(examDate).getTime();
+  const now = new Date();
+  const diff = examDate - now;
 
-  const total = exam - now;
-  if(total<=0) return;
+  if(diff <= 0) return;
 
-  const days=Math.floor(total/(1000*60*60*24));
-  const hours=Math.floor((total%(1000*60*60*24))/(1000*60*60));
-  const mins=Math.floor((total%(1000*60*60))/(1000*60));
-  const secs=Math.floor((total%(1000*60))/1000);
+  const d = Math.floor(diff/1000/60/60/24);
+  const h = Math.floor(diff/1000/60/60)%24;
+  const m = Math.floor(diff/1000/60)%60;
+  const s = Math.floor(diff/1000)%60;
 
-  dEl.textContent=days;
-  hEl.textContent=hours;
-  mEl.textContent=mins;
-  sEl.textContent=secs;
+  daysEl.innerText = d;
+  hoursEl.innerText = h;
+  minutesEl.innerText = m;
+  secondsEl.innerText = s;
 
-  const startYear = new Date().getFullYear();
-  const start = new Date(startYear,0,1).getTime();
-  const percent = ((now-start)/(exam-start))*100;
-  percentEl.textContent = percent.toFixed(1);
-}
-
-setInterval(updateExam,1000);
-updateTime();
-updateExam();
+},1000);
