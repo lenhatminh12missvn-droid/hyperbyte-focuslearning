@@ -1,76 +1,62 @@
 <!DOCTYPE html>
-<html lang="vi">
-<head><link rel="icon" href="logo.png">
+<html lang="en">
+<head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-
-
+<title>Learning Mode</title>
 <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
 <div class="app">
 
+  <aside class="sidebar">
 
-<header class="top-bar">
-    <img src="logo.png" class="logo">
-    <h1>Learning Mode</h1>
-</header>
+    <h1 class="logo">Learning Mode</h1>
 
-<!-- Pomodoro -->
-<div class="card">
-<h2>Pomodoro Timer</h2>
+    <!-- Pomodoro -->
+    <div class="card">
+      <h2>Pomodoro Timer</h2>
 
-<div class="time" id="time">25:00</div>
+      <div id="timer">25:00</div>
 
-<div class="progress-bar">
-  <div class="progress" id="progress"></div>
-</div>
+      <div class="progress-bar">
+        <div id="progress"></div>
+      </div>
 
-<p>Pomodoro Completed: <span id="sessions">0</span></p>
+      <p>Pomodoro Completed: <span id="count">0</span></p>
 
-<button id="startBtn">Start</button>
-<button id="resetBtn">Reset</button>
+      <div class="buttons">
+        <button id="startBtn">Start</button>
+        <button id="resetBtn">Reset</button>
+      </div>
+    </div>
 
-</div>
+    <!-- Exam -->
+    <div class="card">
+      <h2>Exam Countdown</h2>
 
-<!-- Exam Countdown -->
-<div class="card">
+      <div class="countdown">
+        <div><span id="days">0</span>Days</div>
+        <div><span id="hours">0</span>Hours</div>
+        <div><span id="minutes">0</span>Minutes</div>
+        <div><span id="seconds">0</span>Seconds</div>
+      </div>
 
-<h2>Exam Countdown</h2>
+      <input type="date" id="examDate">
+      <button id="saveDate">Save Exam Date</button>
 
-<div class="exam-grid">
-  <div class="box"><div id="d">0</div>Days</div>
-  <div class="box"><div id="h">0</div>Hours</div>
-  <div class="box"><div id="m">0</div>Minutes</div>
-  <div class="box"><div id="s">0</div>Seconds</div>
-</div>
+      <p id="examProgress">Progress: 0%</p>
+    </div>
 
-<br>
+  </aside>
 
-<input type="date" id="examInput">
-<button id="saveExam">Save Exam Date</button>
-
-<div class="percent">
-Progress to exam: <span id="percent">0</span>%
-</div>
-
-</div>
+  <main class="content">
+    <!-- Future content -->
+  </main>
 
 </div>
 
 <script src="script.js"></script>
 </body>
 </html>
-<div class="app">
-  <div class="left-panel">
-     <!-- Pomodoro + Exam -->
-  </div>
-
-  <div class="right-panel">
-     <!-- để trống hoặc thêm hình / quote -->
-  </div>
-</div>
-
