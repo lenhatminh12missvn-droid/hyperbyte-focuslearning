@@ -120,5 +120,20 @@ button:hover{
   align-items: center;       /* căn giữa dọc */
   gap: 40px;
 }
+.app{
+  width:100%;
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  gap:60px;
+}
+
+.left-panel{
+  width:420px;
+}
+
+.right-panel{
+  flex:1;
+}
 
 
