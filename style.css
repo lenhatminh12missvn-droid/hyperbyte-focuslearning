@@ -29,9 +29,11 @@ body{
   gap:30px;
 }
 
-.logo{
-  font-size:28px;
-  color:#2fdcff;
+.logo-img{
+  width:28px;
+  height:28px;
+  object-fit:contain;
+  filter:drop-shadow(0 0 6px #2fdcff);
 }
 
 /* Card */
@@ -116,3 +118,4 @@ input[type="date"]{
   border:none;
   margin-bottom:10px;
 }
+
