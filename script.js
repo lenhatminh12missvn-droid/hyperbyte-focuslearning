@@ -53,9 +53,21 @@ const progressText = document.getElementById("examProgress");
 
 let examDate = null;
 
+// Load ngày đã lưu khi mở web
+const savedDate = localStorage.getItem("examDate");
+if(savedDate){
+  examDate = new Date(savedDate);
+  examDateInput.value = savedDate;
+}
+
+// Lưu ngày khi bấm Save
 document.getElementById("saveDate").onclick = () => {
+  if(!examDateInput.value) return;
+  
   examDate = new Date(examDateInput.value);
+  localStorage.setItem("examDate", examDateInput.value);
 };
+
 
 setInterval(() => {
   if(!examDate) return;
@@ -76,3 +88,4 @@ setInterval(() => {
   secondsEl.innerText = s;
 
 },1000);
+
